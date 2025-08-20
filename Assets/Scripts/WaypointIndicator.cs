@@ -9,6 +9,7 @@ public class WaypointIndicator : MonoBehaviour
     [SerializeField] float edgePadding = 30f;
 
     public void SetTarget(Transform t) { target = t; }
+    public void SetCamera(Camera a) { cam = a; }
 
     void LateUpdate()
     {

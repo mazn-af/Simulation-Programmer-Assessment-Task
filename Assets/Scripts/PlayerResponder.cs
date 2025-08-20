@@ -25,7 +25,11 @@ public class PlayerResponder : MonoBehaviour
     private CharacterController controller;
     private float verticalVelocity;
     private float yaw;   
-    private float pitch; 
+    private float pitch;
+    public System.Action<int> OnToolChanged;        
+    public int CurrentToolIndex => currentToolIndex;
+    public int ToolCount => tools?.Length ?? 0;     
+
 
     void Awake()
     {
@@ -132,6 +136,7 @@ public class PlayerResponder : MonoBehaviour
                 toolBehaviours[i].gameObject.SetActive(i == index);
         }
         currentToolIndex = Mathf.Clamp(index, 0, tools.Length - 1);
+        OnToolChanged?.Invoke(currentToolIndex);
     }
 
     public void SetCursor(bool visible)
